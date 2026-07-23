@@ -1,6 +1,7 @@
 import { About } from '#/components/About/About'
 import { Hero } from '#/components/Hero/Hero'
 import { Navbar } from '#/components/Navbar/Navbar'
+import { Program } from '#/components/Program/Program'
 import { Speakers } from '#/components/Speakers/Speakers'
 import { createFileRoute } from '@tanstack/react-router'
 
@@ -32,6 +33,7 @@ function Index() {
           <Hero/>
           <About/>
           <Speakers/>
+          <Program/>
         </main>
     </div>
   )
