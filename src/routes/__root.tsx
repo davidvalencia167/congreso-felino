@@ -1,5 +1,6 @@
 import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
 
+import logoIvec from '../../public/logo-ivec.jpeg?url'
 import appCss from '../styles.css?url'
 
 export const Route = createRootRoute({
@@ -17,6 +18,16 @@ export const Route = createRootRoute({
       },
     ],
     links: [
+      {
+        rel: 'icon',
+        type: 'image/jpeg',
+        href: logoIvec,
+      },
+      {
+        rel: 'apple-touch-icon',
+        type: 'image/jpeg',
+        href: logoIvec,
+      },
       {
         rel: 'stylesheet',
         href: appCss,
