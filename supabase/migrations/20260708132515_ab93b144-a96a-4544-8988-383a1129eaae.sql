@@ -1,0 +1,2 @@
+ALTER TABLE public.registrations DROP CONSTRAINT registrations_payment_method_check;
+ALTER TABLE public.registrations ADD CONSTRAINT registrations_payment_method_check CHECK (payment_method IN ('paypal','wompi','bold'));
