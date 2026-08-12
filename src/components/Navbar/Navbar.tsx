@@ -8,6 +8,7 @@ const links = [
     {href: "#programa", label: "Programa"},
     {href: "#inscripcion", label: "Inscripción"},
     {href: "#sede", label: "Sede"},
+    {href: "#lugares-cercanos", label: "Lugares cercanos"},
     {href: "#faq", label: "FAQ"}
 ];
 

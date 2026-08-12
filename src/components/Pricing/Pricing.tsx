@@ -9,33 +9,24 @@ type PlanDef = { n: PlanName; p: string; amount: number; f: string[]; featured?:
 const plans: PlanDef[] = [
     {
         n: "Estudiante",
-        p: "$45",
-        amount: 45,
-        f: ["Acceso a 2 jornadas", "Material digital", "Certificado asistencia", "Coffee breaks"],
+        p: "$100",
+        amount: 100,
+        f: ["Acceso a las 2 salas", "Certificación por la UCLA", "Muestra Comercial", "Inauguración y Clausura"],
     },
 
     {
         n: "Medico Veterinario",
-        p: "$95",
-        amount: 95,
-        f:["Acceso a 2 jornadas",
-      "Material digital",
-      "Certificado IVEC",
-      "Acceso a talleres",
-      "Almuerzo incluido",],
+        p: "$130",
+        amount: 130,
+        f: ["Acceso a las 2 salas", "Certificación por la UCLA", "Muestra Comercial", "Inauguración y Clausura"],
         featured: true,
     },
 
     {
-        n: "Otros",
-        p: "$160",
-        amount: 160,
-        f: [
-        "Todo lo del Profesional",
-        "Asiento preferencial",
-        "Cena de gala con ponentes",
-        "Kit IVEC edición limitada",
-        "Acceso a grabaciones",],
+        n: "Muestra Comercial",
+        p: "$50",
+        amount: 50,
+        f: ["Acceso a las 2 salas", "Certificación por la UCLA", "Muestra Comercial", "Inauguración y Clausura"],
     },
 ];
 

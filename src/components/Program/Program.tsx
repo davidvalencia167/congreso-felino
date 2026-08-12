@@ -12,7 +12,7 @@ function SalaColumn({title, slots}: {title: string; slots: Slot[]}) {
             </div>
             <div className="space-y-3">
                 {slots.map((item, idx) => (
-                    <div key={`${title}-${idx}-${item.title}`} className="flex items-start gap-4 rounded-2xl bg-background border border-border px-4 py-3 hover:shadow-warm transition-all">
+                    <div key={`${title}-${idx}-${item.title}`} className="card-gold-hover flex items-start gap-4 rounded-2xl bg-background border border-border px-4 py-3 transition-all">
                         <div className="shrink-0 w-24 text-terracotta-deep font-display font-bold text-sm leading-tight">
                             {item.t}
                         </div>

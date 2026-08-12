@@ -10,33 +10,59 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiPublicWebhooksBoldRouteImport } from './routes/api/public/webhooks/bold'
+import { Route as ApiPublicPaymentsCreateIntentRouteImport } from './routes/api/public/payments/create-intent'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicWebhooksBoldRoute = ApiPublicWebhooksBoldRouteImport.update({
+  id: '/api/public/webhooks/bold',
+  path: '/api/public/webhooks/bold',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicPaymentsCreateIntentRoute =
+  ApiPublicPaymentsCreateIntentRouteImport.update({
+    id: '/api/public/payments/create-intent',
+    path: '/api/public/payments/create-intent',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/api/public/payments/create-intent': typeof ApiPublicPaymentsCreateIntentRoute
+  '/api/public/webhooks/bold': typeof ApiPublicWebhooksBoldRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/api/public/payments/create-intent': typeof ApiPublicPaymentsCreateIntentRoute
+  '/api/public/webhooks/bold': typeof ApiPublicWebhooksBoldRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/api/public/payments/create-intent': typeof ApiPublicPaymentsCreateIntentRoute
+  '/api/public/webhooks/bold': typeof ApiPublicWebhooksBoldRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    '/' | '/api/public/payments/create-intent' | '/api/public/webhooks/bold'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/api/public/payments/create-intent' | '/api/public/webhooks/bold'
+  id:
+    | '__root__'
+    | '/'
+    | '/api/public/payments/create-intent'
+    | '/api/public/webhooks/bold'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ApiPublicPaymentsCreateIntentRoute: typeof ApiPublicPaymentsCreateIntentRoute
+  ApiPublicWebhooksBoldRoute: typeof ApiPublicWebhooksBoldRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,21 +74,38 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/webhooks/bold': {
+      id: '/api/public/webhooks/bold'
+      path: '/api/public/webhooks/bold'
+      fullPath: '/api/public/webhooks/bold'
+      preLoaderRoute: typeof ApiPublicWebhooksBoldRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/payments/create-intent': {
+      id: '/api/public/payments/create-intent'
+      path: '/api/public/payments/create-intent'
+      fullPath: '/api/public/payments/create-intent'
+      preLoaderRoute: typeof ApiPublicPaymentsCreateIntentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ApiPublicPaymentsCreateIntentRoute: ApiPublicPaymentsCreateIntentRoute,
+  ApiPublicWebhooksBoldRoute: ApiPublicWebhooksBoldRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
 
 import type { getRouter } from './router.tsx'
-import type { createStart } from '@tanstack/react-start'
+import type { startInstance } from './start.ts'
 declare module '@tanstack/react-start' {
   interface Register {
     ssr: true
     router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
   }
 }

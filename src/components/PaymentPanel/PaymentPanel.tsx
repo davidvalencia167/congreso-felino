@@ -1,10 +1,10 @@
 
-import { getPaymentConfig } from "#/lib/payments.function";
+import { getPaymentConfig } from "#/lib/payments.functions";
 import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { toast } from "sonner";
 
-export type PlanName = "Estudiante" | "Medico Veterinario" | "Otros";
+export type PlanName = "Estudiante" | "Medico Veterinario" | "Muestra Comercial";
 
 interface Props {
     plan: PlanName;

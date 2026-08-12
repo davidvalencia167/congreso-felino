@@ -37,10 +37,10 @@ export function About() {
                             comunidad felina venezolana. Prepárate para aprender, compartir y ser parte de la historia.
                         </p>
 
-                        <div className="mt-10 grid grid-cols-4 rounded-2xl bg-background border border-border overflow-hidden shadow-soft">
+                        <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 rounded-2xl bg-background border border-border overflow-hidden shadow-soft">
                             {
                                 stats.map((s, i) => (
-                                    <div key={s.l} className={`px-4 py-6 text-center ${i > 0 ? "border-l border-border" : ""}`}>
+                                    <div key={s.l} className={`min-w-0 px-3 py-5 text-center sm:px-4 sm:py-6 ${i % 2 === 1 ? "border-l border-border" : ""} ${i > 1 ? "border-t border-border sm:border-t-0" : ""} ${i > 0 ? "sm:border-l sm:border-border" : ""}`}>
                                         <div className="font-display text-3xl md:text-4xl font-bold text-terracotta-deep">{s.n}</div>
                                         <div className="mt-1 text-[11px] uppercase tracking-wider text-muted-foreground">{s.l}</div>
                                     </div>
@@ -51,7 +51,7 @@ export function About() {
                     <div className="grid sm:grid-cols-2 gap-5">
                             {
                                 features.map((f) =>(
-                                    <div key={f.t} className="group rounded-2xl bg-background border border-border p-7 shadow-soft hover:shadow-warm hover:-translate-y-1 transition-all duration-300">
+                                    <div key={f.t} className="group card-gold-hover rounded-2xl bg-background border border-border p-7 shadow-soft hover:-translate-y-1 transition-all duration-300">
                                         <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-peach text-2xl">
                                             {f.i}
                                         </div>

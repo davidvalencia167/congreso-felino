@@ -54,7 +54,7 @@ export function Hero() {
             <div className="absolute inset-0 -z-0 pointer-events-none" style={{background: "linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.75) 60%, rgba(0,0,0,0.95) 100%)"}}/>
             <div className="absolute inset-0 -z-0 pointer-events-none" style={{background: "radial-gradient(ellipse at 50% 0%, rgba(212,162,54,0.22), transparent 60%)"}}/>
             <div className="relative mx-auto max-w-6xl px-5 md:px-8 text-center">
-                <span className="chip-gold" style={{border: "1px solid rgba(212, 162, 54, 0.35)"}}>
+                <span className="chip-gold !text-sm md:!text-base !px-6 !py-2.5 !tracking-[0.18em]" style={{border: "1px solid rgba(212,162,54,0.55)", boxShadow: "0 8px 30px -10px rgba(212,162,54,0.45)",}}>
                     25-26 Febrero · 2027
                 </span>
                 <h1 className="mt-6 font-display font-bold leading-[0.95] text-balance">
@@ -62,14 +62,12 @@ export function Hero() {
                         Congreso
                     </span>
                     <span className="text-gold-gradient mt-3 block italic text-3xl md:text-5xl lg:text-6xl">
-                        de
+                        Veterinario
                     </span>
                     <span className="text-gold-gradient block text-6xl md:text-8xl lg:text-9xl">
-                        Felinos
+                        Felino
                     </span>
-                    <span className="text-gold-gradient mt-2 block text-3xl md:text-5xl lg:text-6xl italic">
-                        Barquisimeto
-                    </span>
+                    
                 </h1>
 
                 <p className="mt-8 max-w-2xl mx-auto text-lg" style={{color: "rgba(255, 255, 255, 0.78)"}}>
