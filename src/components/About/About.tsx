@@ -8,7 +8,7 @@ const features = [
 
 const stats = [
     {n: "28", l: "Ponencias"},
-    {n: "3", l: "Pre-Congresos"},
+    {n: "5", l: "Pre-Congresos"},
     {n: "2", l: "Dias"},
     {n: "1200", l: "Asistentes"},
 ];
@@ -24,14 +24,14 @@ export function About() {
                             Un encuentro hecho a la medida del {" "}
                             <span className="italic text-terracotta">paciente felino</span>.
                         </h2>
-                        <p className="mt-6 text-muted-foreground max-w-lg">
+                        <p className="mt-6 max-w-lg text-center text-muted-foreground">
                             Barquisimeto abre sus puertas para recibir a medicos veterinarios, estudiantes, investigadores
                             y apasionados del mundo felino en un encuentro sin precedentes para la medicina felina nacional.
                             Con el respaldo académico de destacados especialistas nacionales e internacionales, este congreso
                             reunira conocimientos, innovación y experiencias que impulsarán el desarrollo de la salud y el
                             bienestar de los gatos en nuestra region.
                         </p>
-                        <p className="mt-4 text-muted-foreground max-w-lg">
+                        <p className="mt-4 max-w-lg text-center text-muted-foreground">
                             En febrero del 2027, la capital musical de Venezuela será el escenario del primer gran
                             Congreso de Gatos del país, marcando un hito para la educación veterinaria y la
                             comunidad felina venezolana. Prepárate para aprender, compartir y ser parte de la historia.

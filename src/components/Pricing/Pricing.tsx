@@ -11,14 +11,14 @@ const plans: PlanDef[] = [
         n: "Estudiante",
         p: "$100",
         amount: 100,
-        f: ["Acceso a las 2 salas", "Certificación por la UCLA", "Muestra Comercial", "Inauguración y Clausura"],
+        f: ["Acceso a las 2 salas", "Certificado como estudiante por la UCLA", "Muestra Comercial", "Inauguración y Clausura"],
     },
 
     {
         n: "Medico Veterinario",
         p: "$130",
         amount: 130,
-        f: ["Acceso a las 2 salas", "Certificación por la UCLA", "Muestra Comercial", "Inauguración y Clausura"],
+        f: ["Acceso a las 2 salas", "Certificado como Medico Veterinario por la UCLA", "Muestra Comercial", "Inauguración y Clausura"],
         featured: true,
     },
 
@@ -26,7 +26,7 @@ const plans: PlanDef[] = [
         n: "Muestra Comercial",
         p: "$50",
         amount: 50,
-        f: ["Acceso a las 2 salas", "Certificación por la UCLA", "Muestra Comercial", "Inauguración y Clausura"],
+        f: ["Muestra Comercial", "Inauguración y Clausura"],
     },
 ];
 

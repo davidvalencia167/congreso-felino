@@ -19,7 +19,12 @@ export function NearbyPlaces () {
                     {
                         nearbyPlaces.map((p) => (
                             <article key={p.name} className="card-gold-hover rounded-2xl border border-border bg-card p-6">
-                                <div className="flex items-center justify-between gap-3">
+                                <img
+                                    src={p.image}
+                                    alt={`Vista de ${p.name}`}
+                                    className="h-48 w-full rounded-xl object-cover"
+                                />
+                                <div className="mt-5 flex items-center justify-between gap-3">
                                     <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-terracotta-deep">{p.category}</span>
                                     <span className="text-[11px] text-muted-foreground">{p.distance}</span>
                                 </div>
