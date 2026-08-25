@@ -14,10 +14,9 @@
     "lint": "eslint",
     "format": "prettier --write . && eslint --fix",
     "check": "prettier --check .",
-    "deploy": "npm run build && wrangler deploy"
+    "deploy": "npm run build"
   },
   "dependencies": {
-    "@cloudflare/vite-plugin": "^1.26.0",
     "@fontsource/fraunces": "^5.2.9",
     "@fontsource/inter": "^5.2.8",
     "@radix-ui/react-slot": "^1.3.0",
@@ -56,8 +55,7 @@
     "prettier": "^3.8.1",
     "typescript": "^6.0.2",
     "vite": "^8.0.0",
-    "vitest": "^4.1.5",
-    "wrangler": "^4.70.0"
+    "vitest": "^4.1.5"
   },
   "pnpm": {
     "onlyBuiltDependencies": [

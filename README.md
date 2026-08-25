@@ -1,5 +1,23 @@
 Welcome to your new TanStack Start app! 
 
+## API de pagos PHP
+
+La pasarela de Bold se ejecuta en PHP independiente, sin Node.js ni Cloudflare. Los endpoints son `api/payments/create-intent.php` y `api/webhooks/bold.php`.
+
+Requisitos del servidor: PHP 8.1 o superior con `curl` y `json` habilitados. Configura estas variables como variables privadas del hosting PHP:
+
+```text
+SUPABASE_URL=https://tu-proyecto.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=...
+BOLD_IDENTITY_KEY=...
+BOLD_SECRET_KEY=...
+USD_TO_COP=4000
+CORS_ORIGIN=https://tu-frontend.example
+MAIL_FROM=no-reply@tu-dominio.example
+```
+
+Define `VITE_PAYMENT_API_URL` en el frontend apuntando a la carpeta pública `api`, por ejemplo `https://api.tu-dominio.example`. En Bold configura el webhook como `https://api.tu-dominio.example/webhooks/bold.php`.
+
 # Getting Started
 
 To run this application:

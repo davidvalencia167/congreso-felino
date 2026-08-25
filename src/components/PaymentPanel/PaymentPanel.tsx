@@ -1,6 +1,4 @@
 
-import { getPaymentConfig } from "#/lib/payments.functions";
-import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { toast } from "sonner";
 
@@ -19,6 +17,7 @@ interface BoldIntent {
     amount: number;
     currency: string;
     integritySignature: string;
+    identityKey: string;
 }
 
 export function PaymentPanel({plan, amountUsd, onClose}: Props) {
@@ -28,14 +27,7 @@ export function PaymentPanel({plan, amountUsd, onClose}: Props) {
     const [reference, setReference] = useState<string | null>(null);
     const [boldIntent, setBoldIntent] = useState<BoldIntent | null>(null);
     const [loading, setLoading] = useState(false);
-    const [config, setConfig] = useState<{boldIdentityKey: string; usdToCop: number;} | null>(null);
     const boldContainerRef = useRef<HTMLDivElement>(null);
-
-    const fetchConfig = useServerFn(getPaymentConfig);
-
-    useEffect(() => {
-        fetchConfig().then(setConfig).catch(() => setConfig(null));
-    }, [fetchConfig]);
 
     const canContinue = useMemo(
         () => fullName.trim().length >= 2 && /\S+@\S+\.\S+/.test(email),
@@ -44,7 +36,7 @@ export function PaymentPanel({plan, amountUsd, onClose}: Props) {
 
     // Inject Bold Payment Button
     useEffect(() => {
-        if (step !== "method" || !boldIntent || !config?.boldIdentityKey) return;
+        if (step !== "method" || !boldIntent?.identityKey) return;
         const container = boldContainerRef.current;
         if (!container) return;
         container.innerHTML = "";
@@ -52,7 +44,7 @@ export function PaymentPanel({plan, amountUsd, onClose}: Props) {
         const script = document.createElement("script");
         script.src = "https://checkout.bold.co/library/boldPaymentButton.js";
         script.setAttribute("data-bold-button", "");
-        script.setAttribute("data-api-key", config.boldIdentityKey);
+        script.setAttribute("data-api-key", boldIntent.identityKey);
         script.setAttribute("data-amount", String(boldIntent.amount));
         script.setAttribute("data-currency", boldIntent.currency);
         script.setAttribute("data-order-id", boldIntent.reference);
@@ -68,12 +60,13 @@ export function PaymentPanel({plan, amountUsd, onClose}: Props) {
             JSON.stringify({email, fullName}),
         );
         container.appendChild(script);
-    }, [step, boldIntent, config, plan, email, fullName]);
+    }, [step, boldIntent, plan, email, fullName]);
 
     async function createIntent() {
         setLoading(true);
         try {
-            const res = await fetch("/api/public/payments/create-intent", {
+            const apiBase = (import.meta.env.VITE_PAYMENT_API_URL || "/api").replace(/\/$/, "");
+            const res = await fetch(`${apiBase}/payments/create-intent.php`, {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({plan, fullName, email, amountUsd}),
@@ -81,7 +74,7 @@ export function PaymentPanel({plan, amountUsd, onClose}: Props) {
             if (!res.ok) throw new Error("No se pudo iniciar el pago");
             const data = (await res.json()) as {
                 reference: string;
-                bold?: {amount: number, currency: string; integritySignature: string};
+                bold?: {amount: number, currency: string; integritySignature: string; identityKey: string};
             };
             setReference(data.reference);
             if (data.bold) {
@@ -90,6 +83,7 @@ export function PaymentPanel({plan, amountUsd, onClose}: Props) {
                     amount: data.bold.amount,
                     currency: data.bold.currency,
                     integritySignature: data.bold.integritySignature,
+                    identityKey: data.bold.identityKey,
                 });
             }
             setStep("method");
@@ -167,7 +161,7 @@ export function PaymentPanel({plan, amountUsd, onClose}: Props) {
                                 COP para el cobro.
                             </p>
                             {
-                                boldIntent && config?.boldIdentityKey ? (
+                                boldIntent?.identityKey ? (
                                     <div ref={boldContainerRef} className="flex justify-center" />
                                 ) : (
                                     <p className="text-sm text-destructive">
