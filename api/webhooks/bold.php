@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+require_once __DIR__ . '/../config/database.php';
+
 header('Content-Type: text/plain; charset=utf-8');
 
 function respond(string $message, int $status): never
@@ -18,35 +20,6 @@ function requireEnv(string $name): string
         respond('Server not configured', 500);
     }
     return trim($value);
-}
-
-function supabaseRequest(string $method, string $url, string $serviceKey, ?array $body = null): array
-{
-    $curl = curl_init($url);
-    curl_setopt_array($curl, [
-        CURLOPT_CUSTOMREQUEST => $method,
-        CURLOPT_HTTPHEADER => [
-            'apikey: ' . $serviceKey,
-            'Authorization: Bearer ' . $serviceKey,
-            'Content-Type: application/json',
-            'Accept: application/json',
-        ],
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_TIMEOUT => 15,
-    ]);
-    if ($body !== null) {
-        curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($body, JSON_THROW_ON_ERROR));
-    }
-
-    $response = curl_exec($curl);
-    $status = (int) curl_getinfo($curl, CURLINFO_HTTP_CODE);
-    $error = curl_error($curl);
-    curl_close($curl);
-    if ($response === false || $error !== '' || $status < 200 || $status >= 300) {
-        error_log('Supabase request failed: ' . ($error ?: $response));
-        respond('Database error', 500);
-    }
-    return $response === '' ? [] : (json_decode($response, true, 512, JSON_THROW_ON_ERROR) ?: []);
 }
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -76,15 +49,16 @@ if (!is_string($reference) || $reference === '') {
     respond('Missing reference', 400);
 }
 
-$supabaseUrl = rtrim(requireEnv('SUPABASE_URL'), '/');
-$serviceKey = requireEnv('SUPABASE_SERVICE_ROLE_KEY');
-$rows = supabaseRequest(
-    'GET',
-    $supabaseUrl . '/rest/v1/registrations?reference=eq.' . rawurlencode($reference) . '&select=*',
-    $serviceKey,
-);
-$registration = $rows[0] ?? null;
-if (!is_array($registration)) {
+try {
+    $database = mysqlConnection();
+    $statement = $database->prepare('SELECT * FROM registrations WHERE reference = :reference LIMIT 1');
+    $statement->execute(['reference' => $reference]);
+    $registration = $statement->fetch();
+} catch (Throwable $error) {
+    error_log('MySQL select failed: ' . $error->getMessage());
+    respond('Database error', 500);
+}
+if ($registration === false) {
     respond('Registration not found', 404);
 }
 if (($registration['payment_status'] ?? '') === 'paid') {
@@ -94,15 +68,20 @@ if (($registration['payment_status'] ?? '') === 'paid') {
 $newStatus = str_contains($eventType, 'APPROVED') ? 'paid' :
     (str_contains($eventType, 'REJECT') || str_contains($eventType, 'VOID') || str_contains($eventType, 'FAIL') ? 'failed' : 'pending');
 
-supabaseRequest(
-    'PATCH',
-    $supabaseUrl . '/rest/v1/registrations?id=eq.' . rawurlencode((string) $registration['id']),
-    $serviceKey,
-    [
+try {
+    $statement = $database->prepare(
+        'UPDATE registrations SET payment_status = :payment_status, provider_transaction_id = :transaction_id ' .
+        'WHERE id = :id',
+    );
+    $statement->execute([
         'payment_status' => $newStatus,
-        'provider_transaction_id' => is_string($paymentId) ? $paymentId : null,
-    ],
-);
+        'transaction_id' => is_string($paymentId) ? $paymentId : null,
+        'id' => $registration['id'],
+    ]);
+} catch (Throwable $error) {
+    error_log('MySQL update failed: ' . $error->getMessage());
+    respond('Database error', 500);
+}
 
 if ($newStatus === 'paid' && filter_var($registration['email'] ?? '', FILTER_VALIDATE_EMAIL)) {
     $subject = 'Confirmacion de pago - IVEC 2026 (' . $reference . ')';

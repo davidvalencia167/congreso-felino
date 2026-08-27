@@ -63,6 +63,7 @@ export function PaymentPanel({plan, amountUsd, onClose}: Props) {
     }, [step, boldIntent, plan, email, fullName]);
 
     async function createIntent() {
+        if (loading) return;
         setLoading(true);
         try {
             const apiBase = (import.meta.env.VITE_PAYMENT_API_URL || "/api").replace(/\/$/, "");
