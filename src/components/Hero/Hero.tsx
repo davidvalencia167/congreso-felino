@@ -10,6 +10,8 @@ import lugoImg from "../../assets/lugo.png";
 import lugoVideo from "../../assets/rodrigo-lugo.mp4";
 import alejandraImg from "../../assets/mejia.png";
 import alejandraVideo from "../../assets/alejandra-vallejo.mp4";
+import bruzzoneImg from "../../assets/bruzzone.png";
+import bruzzoneVideo from "../../assets/ernesto-bruzzone.mp4";
 import { useEffect, useState } from "react";
 
 function useCountdown(target: Date) {
@@ -37,6 +39,8 @@ const slides: Slide[] = [
   { type: "video", src: michaelVideo, poster:  michaelVideo},
   { type: "image", src: lugoImg, alt: "Dr Rodrigo Lugo" },
   { type: "video", src: lugoVideo, poster:  lugoVideo},
+  {type: "image", src: bruzzoneImg, alt: "Dr Ernesto Rodolfo Bruzzone"},
+  {type: "video", src: bruzzoneVideo, poster: bruzzoneVideo},
   { type: "image", src: alejandraImg, alt: "Dr Alejandra Vallejo" },
   { type: "video", src: alejandraVideo, poster:  alejandraVideo},
 ];

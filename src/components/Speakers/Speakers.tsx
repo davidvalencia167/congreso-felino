@@ -22,7 +22,7 @@ export function Speakers() {
                     </p>
                 </div>
 
-                <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
                     {
                         speakersData.map((s) => (
                             <article key={s.n} className="group overflow-hidden rounded-3xl bg-peach-soft border border-border hover:shadow-warm transition-all duration-300 flex flex-col">
@@ -38,7 +38,7 @@ export function Speakers() {
                                 <div className="p-5 flex-1 flex flex-col">
                                     <h3 className="font-display text-lg font-semibold">{s.n}</h3>
                                     <p className="mt-1 text-sm text-terracotta-deep font-medium">{s.r}</p>
-                                    <button type="button" onClick={() => setActive(s)} className="mt-4 inline-flex items-center justify-center gap-2 rounded-full bg-terracotta px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-terracotta-deep transition-colors">
+                                    <button type="button" onClick={() => setActive(s)} className="mt-auto inline-flex items-center justify-center gap-2 rounded-full bg-terracotta px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-terracotta-deep transition-colors">
                                         Ver información
                                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                                             <path d="M5 12h14M13 5l7 7-7 7" />

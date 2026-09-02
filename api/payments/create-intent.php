@@ -35,15 +35,18 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 $input = json_decode(file_get_contents('php://input'), true);
-$plans = ['Estudiante', 'Medico Veterinario', 'Muestra Comercial'];
+$plans = [
+    'Estudiante' => 60.0,
+    'Medico Veterinario' => 100.0,
+    'Muestra Comercial' => 150.0,
+];
 $plan = is_array($input) ? ($input['plan'] ?? null) : null;
 $fullName = is_array($input) ? trim((string) ($input['fullName'] ?? '')) : '';
 $email = is_array($input) ? trim((string) ($input['email'] ?? '')) : '';
-$amountUsd = is_array($input) ? ($input['amountUsd'] ?? null) : null;
+$amountUsd = is_string($plan) && array_key_exists($plan, $plans) ? $plans[$plan] : null;
 
-if (!in_array($plan, $plans, true) || strlen($fullName) < 2 || strlen($fullName) > 120 ||
-    !filter_var($email, FILTER_VALIDATE_EMAIL) || strlen($email) > 160 ||
-    !is_numeric($amountUsd) || (float) $amountUsd <= 0 || (float) $amountUsd > 1000) {
+if ($amountUsd === null || strlen($fullName) < 2 || strlen($fullName) > 120 ||
+    !filter_var($email, FILTER_VALIDATE_EMAIL) || strlen($email) > 160) {
     jsonResponse(['error' => 'Invalid input'], 400);
 }
 

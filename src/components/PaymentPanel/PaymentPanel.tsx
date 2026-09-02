@@ -27,6 +27,7 @@ export function PaymentPanel({plan, amountUsd, onClose}: Props) {
     const [reference, setReference] = useState<string | null>(null);
     const [boldIntent, setBoldIntent] = useState<BoldIntent | null>(null);
     const [loading, setLoading] = useState(false);
+    const [paymentStatus, setPaymentStatus] = useState<"pending" | "failed" | null>(null);
     const boldContainerRef = useRef<HTMLDivElement>(null);
 
     const canContinue = useMemo(
@@ -62,6 +63,32 @@ export function PaymentPanel({plan, amountUsd, onClose}: Props) {
         container.appendChild(script);
     }, [step, boldIntent, plan, email, fullName]);
 
+    useEffect(() => {
+        if (step !== "method" || !reference) return;
+
+        let cancelled = false;
+        const apiBase = (import.meta.env.VITE_PAYMENT_API_URL || "/api").replace(/\/$/, "");
+        const checkStatus = async () => {
+            try {
+                const res = await fetch(`${apiBase}/payments/status.php?reference=${encodeURIComponent(reference)}`);
+                if (!res.ok) return;
+                const data = (await res.json()) as {status?: string};
+                if (cancelled) return;
+                if (data.status === "paid") setStep("success");
+                if (data.status === "failed") setPaymentStatus("failed");
+            } catch {
+                // Bold can still complete the payment even when a status check fails.
+            }
+        };
+
+        void checkStatus();
+        const interval = window.setInterval(checkStatus, 3000);
+        return () => {
+            cancelled = true;
+            window.clearInterval(interval);
+        };
+    }, [step, reference]);
+
     async function createIntent() {
         if (loading) return;
         setLoading(true);
@@ -70,7 +97,7 @@ export function PaymentPanel({plan, amountUsd, onClose}: Props) {
             const res = await fetch(`${apiBase}/payments/create-intent.php`, {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
-                body: JSON.stringify({plan, fullName, email, amountUsd}),
+                body: JSON.stringify({plan, fullName, email}),
             });
             if (!res.ok) throw new Error("No se pudo iniciar el pago");
             const data = (await res.json()) as {
@@ -78,6 +105,7 @@ export function PaymentPanel({plan, amountUsd, onClose}: Props) {
                 bold?: {amount: number, currency: string; integritySignature: string; identityKey: string};
             };
             setReference(data.reference);
+            setPaymentStatus("pending");
             if (data.bold) {
                 setBoldIntent({
                     reference: data.reference,
@@ -167,6 +195,16 @@ export function PaymentPanel({plan, amountUsd, onClose}: Props) {
                                 ) : (
                                     <p className="text-sm text-destructive">
                                         Bold no está configurado todavia.
+                                    </p>
+                                )}
+                                {paymentStatus === "pending" && (
+                                    <p className="mt-4 text-xs text-muted-foreground">
+                                        Esperando confirmación del pago...
+                                    </p>
+                                )}
+                                {paymentStatus === "failed" && (
+                                    <p className="mt-4 text-sm text-destructive">
+                                        El pago no fue aprobado. Puedes intentarlo de nuevo.
                                     </p>
                                 )}
 

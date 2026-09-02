@@ -4,6 +4,7 @@ import { Footer } from '#/components/Footer/Footer'
 import { Hero } from '#/components/Hero/Hero'
 import { Navbar } from '#/components/Navbar/Navbar'
 import { NearbyPlaces } from '#/components/NearbyPlaces/NearbyPlaces'
+import { Presale } from '#/components/Presale/Presale'
 import { Princing } from '#/components/Pricing/Pricing'
 import { Program } from '#/components/Program/Program'
 import { Speakers } from '#/components/Speakers/Speakers'
@@ -40,6 +41,7 @@ function Index() {
           <About/>
           <Speakers/>
           <Program/>
+          <Presale/>
           <Princing/>
           <Venue/>
           <NearbyPlaces/>

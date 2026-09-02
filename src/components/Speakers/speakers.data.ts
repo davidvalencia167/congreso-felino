@@ -2,6 +2,7 @@ import paludiImg from "../../assets/paludi.png";
 import michaelImg from "../../assets/michael-villa.png";
 import lugoImg from "../../assets/lugo.png";
 import alejandraImg from "../../assets/mejia.png";
+import bruzzoneImg from "../../assets/bruzzone.png";
 
 export type Speaker = {
     n: string;
@@ -41,6 +42,16 @@ export const speakersData: Speaker[] = [
         topics: ["Inmunología", "Laboratorio Clínico", "Dermatología animal"],
     },
 
+    
+    {
+        n: "Dr Ernesto Rodolfo Bruzzone",
+        r: "Medico Veterinario",
+        i: bruzzoneImg,
+        country: "Argentina",
+        bio: "Médico Veterinario egresado de la Universidad Nacional de La Plata (UNLP) en 1984, con más de cuatro décadas de trayectoria profesional. Su formación y experiencia se han desarrollado principalmente en gastroenterología veterinaria, endoscopía, ecografía, diagnóstico radiológico y cirugía laparoscópica.",
+        topics: ["Gastroenterología en caninos y felinos", "Endoscopía digestiva: indicaciones, diagnóstico y técnicas."]
+    },
+
     {
         n: "Dra Alejandra Mejía",
         r: "Medica Veterinaria",
@@ -50,4 +61,5 @@ export const speakersData: Speaker[] = [
         bio: "Médica Veterinaria con Maestría en Gestión de Ciencia, Tecnología e Innovación y especialización en Gerencia de Marketing. Con más de 16 años de experiencia en el desarrollo estratégico del sector veterinario, ha acompañado la transformación de clínicas, hospitales y empresas del ecosistema, articulando academia, industria y sector público para construir modelos de negocio sostenibles y de alto impacto.",
         topics: ["Gestion y Desarrollo de Negocios Veterinarios"],
     },
+
 ]

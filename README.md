@@ -2,7 +2,7 @@ Welcome to your new TanStack Start app!
 
 ## API de pagos PHP
 
-La pasarela de Bold se ejecuta en PHP independiente, sin Node.js, Cloudflare ni Supabase. Los endpoints son `api/payments/create-intent.php` y `api/webhooks/bold.php`.
+La pasarela de Bold se ejecuta en PHP independiente, sin Node.js, Cloudflare ni Supabase. Los endpoints son `api/payments/create-intent.php`, `api/payments/status.php` y `api/webhooks/bold.php`.
 
 Los registros de pago se guardan en la base de datos MySQL de Hostinger. Requisitos del servidor: PHP 8.1 o superior con `pdo_mysql` y `json` habilitados. Configura estas variables como variables privadas del hosting PHP:
 
@@ -19,7 +19,9 @@ CORS_ORIGIN=https://tu-frontend.example
 MAIL_FROM=no-reply@tu-dominio.example
 ```
 
-En Hostinger crea la tabla ejecutando `api/database.sql` desde phpMyAdmin. Define `VITE_PAYMENT_API_URL` en el frontend apuntando a la carpeta pública `api`, por ejemplo `https://api.tu-dominio.example`. En Bold configura el webhook como `https://api.tu-dominio.example/webhooks/bold.php`.
+En Hostinger crea la tabla ejecutando `api/database.sql` desde phpMyAdmin. Sube la carpeta `api` a una ubicación pública del mismo dominio o subdominio y configura las variables en el panel PHP; subir un archivo `.env` no hace que PHP lo lea automáticamente. Define `VITE_PAYMENT_API_URL` antes de compilar el frontend, apuntando a esa carpeta pública, por ejemplo `https://api.tu-dominio.example`. En Bold configura el webhook como `https://api.tu-dominio.example/webhooks/bold.php`.
+
+Para publicar: ejecuta `npm run build`, sube el contenido generado en `dist/` a `public_html`, sube `api/` a la ruta pública elegida, importa `api/database.sql` en phpMyAdmin y configura `BOLD_IDENTITY_KEY`, `BOLD_SECRET_KEY`, las variables MySQL, `CORS_ORIGIN` y `MAIL_FROM`. Usa HTTPS y verifica que el dominio de `CORS_ORIGIN` coincida exactamente con el frontend.
 
 # Getting Started
 
