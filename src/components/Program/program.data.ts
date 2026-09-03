@@ -10,7 +10,7 @@ export const program: {day1: DayProgram; day2: DayProgram} = {
             {t: "11:00 - 11:30", title: "Receso", tag: "Pausa"},
             {t: "11:30 - 12:15", title: "Manejo de las emergencias en los gatos pediátricos", sub: "Dr. Michael Villa"},
             {t: "12:15 - 14:00", title: "Almuerzo", tag: "Pausa"},
-            {t: "14:00 - 14:45", title: "MX Comercial", sub: "Espacio libre"},
+            {t: "14:00 - 14:45", title: "Gastritis Crónica Felina", sub: "Dr. Bruzzone"},
             {t: "15:00 - 15:45", title: "Características farmacológicas de los gatos", sub: "Dr. Michael Villa"},
             {t: "16:00 - 16:30", title: "Receso", tag: "Pausa"},
             {t: "16:30 - 17:15", title: "Diarrea crónica en gatos", sub: "Dr. Michael Villa"},
@@ -26,7 +26,7 @@ export const program: {day1: DayProgram; day2: DayProgram} = {
             {t: "14:00 - 14:45", title: "Triaditis como se diagnóstica y trata", sub: "Dr. Paludi"},
             {t: "15:00 - 15:45", title: "Marketing de Atracción Felina", sub: "Dra. Alejandra Mejia"},
             {t: "16:00 - 16:30", title: "Receso", tag: "Pausa"},
-            {t: "16:30 - 17:15", title: "MX Comercial", sub: "Espacio libre"},
+            {t: "16:30 - 17:15", title: "Esofagitis y manejo de cuerpos extraños", sub: "Dr. Bruzzone"},
             {t: "17:30 - 18:15", title:"Citología diagnóstica: Liquidos corporales", sub: "Dr. Lugo"}
         ],
     },
@@ -37,7 +37,7 @@ export const program: {day1: DayProgram; day2: DayProgram} = {
             {t: "11:00 - 11:30", title: "Receso", tag: "Pausa"},
             {t: "11:30 - 12:15", title: "Estrés conocerlo es entender el camino a la clínica", sub: "Dr. Paludi"},
             {t: "12:15 - 14:00", title: "Almuerzo", tag: "Pausa"},
-            {t: "14:00 - 14:45", title: "MX Comercial", sub: "Espacio libre"},
+            {t: "14:00 - 14:45", title: "Rinitis y sinusitis", sub: "Dr. Bruzzone"},
             {t: "15:00 - 15:45", title: "Lavado traqueobronquial en gatos", sub: "Dr. Lugo"},
             {t: "16:00 - 16:30", title: "Receso", tag: "Pausa"},
             {t: "16:30 - 17:15", title: "Corticoides angeles o demonios", sub: "Dr. Paludi"},
@@ -52,7 +52,7 @@ export const program: {day1: DayProgram; day2: DayProgram} = {
             {t: "14:00 - 14:45", title: "Manejo de la anemia en gatos", sub: "Dr. Michael Villa"},
             {t: "15:00 - 15:45", title: "Disrupción en el Modelo de Negocio Felino", sub: "Dra. Alejandra Mejia"},
             {t: "16:00 - 16:30", title: "Receso", tag: "Pausa"},
-            {t: "16:30 - 17:15", title: "MX Comercial", sub: "Espacio libre"},
+            {t: "16:30 - 17:15", title: "Laringitis obstructiva", sub: "Dr. Bruzzone"},
             {t: "17:30 - 18:15", title:"Abordaje diagnóstico del pénfigo felino", sub: "Dr. Lugo"}
         ]
     }
