@@ -57,21 +57,26 @@ export function Presale() {
                             </div>
                         ))}
                 </div>
-                <div className="mt-10 text-sm text-muted-foreground">
-                    <p>
-                        Para pagos en bolívares (pago móvil):
+                <div className="mt-10 rounded-2xl border border-amber-300/40 bg-card/80 p-5 shadow-warm text-left sm:text-center">
+                    <p className="text-base font-semibold text-terracotta sm:text-lg">
+                        Para pagos en BCV:
                     </p>
-                    <p className="mt-4 font-semibold uppercase tracking-wide text-foreground">Pago móvil</p>
-                    <p className="mt-2">
-                        Banco Venezuela
-                    </p>
-                    <p className="mt-1">
-                        C.I.: <span className="text-foreground">17810881</span>
-                    </p>
-                    <p className="mt-1">
-                        Tel: <span className="text-foreground">04221462613</span>
-                    </p>
-        </div>
+
+                    <div className="mt-4 rounded-2xl border border-border bg-background/80 p-4 sm:p-5">
+                        <p className="text-sm font-bold uppercase tracking-[0.22em] text-muted-foreground sm:text-base">
+                            Pago móvil
+                        </p>
+                        <p className="mt-3 text-2xl font-black text-foreground sm:text-3xl">
+                            Banco Venezuela
+                        </p>
+                        <p className="mt-3 text-base text-muted-foreground sm:text-lg">
+                            C.I.: <span className="font-bold text-foreground">17810881</span>
+                        </p>
+                        <p className="mt-2 text-base text-muted-foreground sm:text-lg">
+                            Tel: <span className="font-bold text-foreground">04221462613</span>
+                        </p>
+                    </div>
+                </div>
             </div>
 
             {
