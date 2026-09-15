@@ -3,8 +3,6 @@ import catBg from "../../assets/hero-bg-cat-new.jpg";
 import { useState } from "react";
 
 const DEADLINE = "30 de septiembre";
-const WHATSAPP = "+58 424-000-0000";
-
 type PresalePlan = {
     n: PlanName;
     label: string;
@@ -24,7 +22,7 @@ export function Presale() {
     return(
         <section id="preventa" className="relative overflow-hidden py-24 md:py-32">
             <img src={catBg} alt="Gato observando de cerca" className="absolute inset-0 h-full w-full object-cover opacity-25" loading="lazy"/>
-            <div className="absolute inset-0 bg-gradient-to-b from-background via-background/85 to-background"/>
+            <div className="absolute inset-0 bg-linear-to-b from-background via-background/85 to-background"/>
             <div className="relative mx-auto max-w-4xl px-5 md:px-8 text-center">
                 <span className="chip-gold">Cupos limitados</span>
                 <h2 className="mt-6 font-display text-5xl md:text-7xl font-bold leading-[0.95]">
@@ -59,15 +57,26 @@ export function Presale() {
                             </div>
                         ))}
                 </div>
-                <p className="mt-10 text-sm text-muted-foreground">
-                    Para pagos en bolívares o dudas, escríbenos al {" "}
-                    <strong className="text-foreground">{WHATSAPP}</strong>
-                </p>
+                <div className="mt-10 text-sm text-muted-foreground">
+                    <p>
+                        Para pagos en bolívares (pago móvil):
+                    </p>
+                    <p className="mt-4 font-semibold uppercase tracking-wide text-foreground">Pago móvil</p>
+                    <p className="mt-2">
+                        Banco Venezuela
+                    </p>
+                    <p className="mt-1">
+                        C.I.: <span className="text-foreground">17810881</span>
+                    </p>
+                    <p className="mt-1">
+                        Tel: <span className="text-foreground">04221462613</span>
+                    </p>
+        </div>
             </div>
 
             {
                 openFor && (
-                    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm" role="dialog" aria-modal="true" onClick={() => setOpenFor(null)}>
+                    <div className="fixed inset-0 z-100 flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm" role="dialog" aria-modal="true" onClick={() => setOpenFor(null)}>
                         <div className="relative flex max-h-[88vh] w-full max-w-lg flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-warm" onClick={(e) => e.stopPropagation()}>
                             <div className="flex items-center justify-between border-b border-border px-5 py-3">
                                 <p className="text-sm font-semibold">Preventa · {openFor.n}</p>
