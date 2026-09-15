@@ -57,24 +57,44 @@ export function Presale() {
                             </div>
                         ))}
                 </div>
-                <div className="mt-10 rounded-2xl border border-amber-300/40 bg-card/80 p-5 shadow-warm text-left sm:text-center">
+                <div className="mt-10 rounded-2xl border border-amber-300/40 bg-card/80 p-5 shadow-warm text-left">
                     <p className="text-base font-semibold text-terracotta sm:text-lg">
-                        Para pagos en BCV:
+                        Para pagos en bolívares (pago móvil):
                     </p>
 
-                    <div className="mt-4 rounded-2xl border border-border bg-background/80 p-4 sm:p-5">
-                        <p className="text-sm font-bold uppercase tracking-[0.22em] text-muted-foreground sm:text-base">
-                            Pago móvil
-                        </p>
-                        <p className="mt-3 text-2xl font-black text-foreground sm:text-3xl">
-                            Banco Venezuela
-                        </p>
-                        <p className="mt-3 text-base text-muted-foreground sm:text-lg">
-                            C.I.: <span className="font-bold text-foreground">17810881</span>
-                        </p>
-                        <p className="mt-2 text-base text-muted-foreground sm:text-lg">
-                            Tel: <span className="font-bold text-foreground">04221462613</span>
-                        </p>
+                    <div className="mt-5 grid gap-4 md:grid-cols-2">
+                        <div className="rounded-2xl border border-border bg-background/80 p-4 sm:p-5">
+                            <p className="text-sm font-bold uppercase tracking-[0.22em] text-muted-foreground sm:text-base">
+                                Pago móvil
+                            </p>
+                            <p className="mt-3 text-2xl font-black text-foreground sm:text-3xl">
+                                Banco de Venezuela
+                            </p>
+                            <p className="mt-3 text-base text-muted-foreground sm:text-lg">
+                                C.I.: <span className="font-bold text-foreground">17810881</span>
+                            </p>
+                            <p className="mt-2 text-base text-muted-foreground sm:text-lg">
+                                Tel: <span className="font-bold text-foreground">04221462613</span>
+                            </p>
+                        </div>
+
+                        <div className="rounded-2xl border border-border bg-background/80 p-4 sm:p-5">
+                            <p className="text-sm font-bold uppercase tracking-[0.22em] text-muted-foreground sm:text-base">
+                                Pago móvil
+                            </p>
+                            <p className="mt-3 text-2xl font-black text-foreground sm:text-3xl">
+                                Banco de Venezuela
+                            </p>
+                            <p className="mt-3 text-base text-muted-foreground sm:text-lg">
+                                Cuenta: <span className="font-bold text-foreground">01020363530001026973</span>
+                            </p>
+                            <p className="mt-2 text-base text-muted-foreground sm:text-lg">
+                                Titular: <span className="font-bold text-foreground">YAJAIRA CORREDOR</span>
+                            </p>
+                            <p className="mt-2 text-base text-muted-foreground sm:text-lg">
+                                V: <span className="font-bold text-foreground">17810881</span>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
