@@ -10,6 +10,7 @@ import { Program } from '#/components/Program/Program'
 import { Speakers } from '#/components/Speakers/Speakers'
 import { Sponsors } from '#/components/Sponsors/Sponsors'
 import { Venue } from '#/components/Venue/Venue'
+import { WhatsAppButton } from '#/components/WhatsAppButton/WhatsAppButton'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/')({
@@ -18,13 +19,13 @@ export const Route = createFileRoute('/')({
         {title: "IVEC 2027 - Congreso Veterinario Felino"},
         {
             name: "description",
-            content: 
+            content:
             "Dos dias dedicados a la medicina felina en Barquisimeto. Ponentes de Latinoamérica, talleres y certificación IVEC. 25-26 de febrero de 2027",
         },
         {property: "og:title", content: "IVEC 2027 - Congreso Veterinario Felino"},
         {
           property: "og:description",
-          content: 
+          content:
           "El congreso felino más importante de Venezuela. 25-26 feb, Barquisimeto",
         },
       ],
@@ -49,6 +50,7 @@ function Index() {
           <FAQ/>
         </main>
         <Footer/>
+        <WhatsAppButton />
     </div>
   )
 }

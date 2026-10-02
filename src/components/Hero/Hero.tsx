@@ -55,10 +55,10 @@ export function Hero() {
     return(
         <section id="top" className="relative overflow-hidden pt-28 pb-20 md:pt-36 md:pb-28" style={{backgroundColor: "#000000"}}>
             <div className="absolute inset-0 z-0 pointer-events-none" style={{backgroundImage: `url(${heroBgCat})`, backgroundSize: "cover", backgroundPosition: "center", opacity: 0.6}}/>
-            <div className="absolute inset-0 -z-0 pointer-events-none" style={{background: "linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.75) 60%, rgba(0,0,0,0.95) 100%)"}}/>
-            <div className="absolute inset-0 -z-0 pointer-events-none" style={{background: "radial-gradient(ellipse at 50% 0%, rgba(212,162,54,0.22), transparent 60%)"}}/>
+            <div className="absolute inset-0 z-0 pointer-events-none" style={{background: "linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.75) 60%, rgba(0,0,0,0.95) 100%)"}}/>
+            <div className="absolute inset-0 z-0 pointer-events-none" style={{background: "radial-gradient(ellipse at 50% 0%, rgba(212,162,54,0.22), transparent 60%)"}}/>
             <div className="relative mx-auto max-w-6xl px-5 md:px-8 text-center">
-                <span className="chip-gold !text-sm md:!text-base !px-6 !py-2.5 !tracking-[0.18em]" style={{border: "1px solid rgba(212,162,54,0.55)", boxShadow: "0 8px 30px -10px rgba(212,162,54,0.45)",}}>
+                <span className="chip-gold text-sm! md:text-base! px-6! py-2.5! tracking-[0.18em]!" style={{border: "1px solid rgba(212,162,54,0.55)", boxShadow: "0 8px 30px -10px rgba(212,162,54,0.45)",}}>
                     25-26 Febrero · 2027
                 </span>
                 <h1 className="mt-6 font-display font-bold leading-[0.95] text-balance">
@@ -71,7 +71,7 @@ export function Hero() {
                     <span className="text-gold-gradient block text-6xl md:text-8xl lg:text-9xl">
                         Felino
                     </span>
-                    
+
                 </h1>
 
                 <p className="mt-8 max-w-2xl mx-auto text-lg" style={{color: "rgba(255, 255, 255, 0.78)"}}>
@@ -93,13 +93,13 @@ export function Hero() {
                 </div>
 
                 <div className="relative mx-auto mt-14 max-w-4xl px-8 md:px-12">
-                    <div className="absolute -inset-6 -z-0 rounded-[2.5rem] blur-3xl opacity-50 pointer-events-none" style={{background: "radial-gradient(circle at 50% 50%, rgba(212,162,54,0.45), transparent 70%)"}}/>
+                    <div className="absolute -inset-6 z-0 rounded-[2.5rem] blur-3xl opacity-50 pointer-events-none" style={{background: "radial-gradient(circle at 50% 50%, rgba(212,162,54,0.45), transparent 70%)"}}/>
                     <Carousel opts={{loop: true}} className="relative">
                     <CarouselContent>
                         {slides.map((slide, idx) => (
                             <CarouselItem key={idx}>
                             <div
-                                className="relative aspect-video overflow-hidden rounded-[1.75rem] bg-black"
+                                className="relative aspect-video overflow-hidden rounded-3xl bg-black"
                                 style={{
                                 boxShadow: "0 30px 80px -20px rgba(0,0,0,0.8)",
                                 border: "1px solid rgba(212,162,54,0.25)",
