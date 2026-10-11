@@ -1,240 +1,192 @@
-Welcome to your new TanStack Start app! 
+# Congreso Felino IVEC 2027
 
-## API de pagos PHP
+Landing page y flujo de inscripción para el Congreso Veterinario Felino IVEC 2027, realizado en Barquisimeto, Venezuela. El proyecto combina un frontend moderno para marketing y registro con una pasarela de pagos en PHP para gestionar las transacciones con Bold y guardar la información en MySQL.
 
-La pasarela de Bold se ejecuta en PHP independiente, sin Node.js, Cloudflare ni Supabase. Los endpoints son `api/payments/create-intent.php`, `api/payments/status.php` y `api/webhooks/bold.php`.
+## Descripción general
 
-Los registros de pago se guardan en la base de datos MySQL de Hostinger. Requisitos del servidor: PHP 8.1 o superior con `pdo_mysql` y `json` habilitados. Configura estas variables como variables privadas del hosting PHP:
+Este proyecto está pensado para promocionar el congreso, mostrar ponentes, agenda, precios, ubicación y facilitar la inscripción de asistentes mediante un formulario y pago seguro. La experiencia principal se entrega en un sitio web desarrollado con React + TanStack Start, mientras que la lógica de pagos y webhooks se ejecuta en una API PHP independiente.
+
+## Funcionalidades principales
+
+- Landing page con hero, información general, programa, ponentes y FAQ
+- Sección de precios con tres planes: Estudiante, Médico Veterinario y Muestra Comercial
+- Modal de inscripción con formulario externo y flujo de pago
+- Integración con Bold para crear intents de pago y verificar estado
+- Webhooks para registrar y actualizar pagos
+- Persistencia en MySQL para eventos de pago y confirmaciones
+- Soporte para correo de confirmación y variables de entorno por hosting
+
+## Stack tecnológico
+
+### Frontend
+
+- React 19
+- TanStack Start
+- Vite
+- Tailwind CSS
+- TypeScript
+
+### Backend de pagos
+
+- PHP 8.1+
+- MySQL
+- PDO para MySQL
+- Endpoint de pagos y webhooks bajo `api/`
+
+## Estructura del proyecto
 
 ```text
-MYSQL_HOST=localhost
-MYSQL_PORT=3306
-MYSQL_DATABASE=nombre_de_tu_base
-MYSQL_USER=usuario_de_tu_base
-MYSQL_PASSWORD=...
-BOLD_IDENTITY_KEY=...
-BOLD_SECRET_KEY=...
-USD_TO_COP=4000
-CORS_ORIGIN=https://tu-frontend.example
-MAIL_FROM=no-reply@tu-dominio.example
+.
+├── api/                     # API PHP para pagos y webhooks
+│   ├── database.sql
+│   ├── payments/
+│   ├── webhooks/
+│   └── config/
+├── public/                 # assets públicos y estáticos
+├── src/                    # aplicación frontend
+│   ├── components/
+│   ├── routes/
+│   └── lib/
+├── .env.example            # variables de entorno de ejemplo
+├── package.json            # scripts del proyecto
+├── vite.config.ts          # configuración de Vite
+├── README.md               # documentación del proyecto
+└── dist/                   # build de producción
 ```
 
-En Hostinger crea la tabla ejecutando `api/database.sql` desde phpMyAdmin. Sube la carpeta `api` a una ubicación pública del mismo dominio o subdominio y configura las variables en el panel PHP; subir un archivo `.env` no hace que PHP lo lea automáticamente. Define `VITE_PAYMENT_API_URL` antes de compilar el frontend, apuntando a esa carpeta pública, por ejemplo `https://api.tu-dominio.example`. En Bold configura el webhook como `https://api.tu-dominio.example/webhooks/bold.php`.
+## Requisitos
 
-Para publicar: ejecuta `npm run build`, sube el contenido generado en `dist/` a `public_html`, sube `api/` a la ruta pública elegida, importa `api/database.sql` en phpMyAdmin y configura `BOLD_IDENTITY_KEY`, `BOLD_SECRET_KEY`, las variables MySQL, `CORS_ORIGIN` y `MAIL_FROM`. Usa HTTPS y verifica que el dominio de `CORS_ORIGIN` coincida exactamente con el frontend.
+- Node.js 18 o superior
+- npm
+- PHP 8.1+ con extensiones `pdo_mysql` y `json` habilitadas
+- MySQL
+- Un dominio o subdominio público para la API PHP
 
-# Getting Started
+## Instalación local
 
-To run this application:
+1. Clona el repositorio
+2. Instala dependencias:
 
 ```bash
 npm install
+```
+
+3. Crea tu archivo de entorno local a partir del ejemplo:
+
+```bash
+cp .env.example .env
+```
+
+4. Ajusta los valores necesarios para tu entorno local o para el servidor final.
+5. Inicia el proyecto:
+
+```bash
 npm run dev
 ```
 
-# Building For Production
+La app quedará disponible en:
 
-To build this application for production:
+```text
+http://localhost:3000
+```
+
+## Variables de entorno
+
+El archivo `.env.example` incluye estas variables:
+
+```env
+# Bold (server-side only)
+BOLD_IDENTITY_KEY=""
+BOLD_SECRET_KEY=""
+USD_TO_COP="4000"
+
+# Hostinger MySQL (server-side only)
+MYSQL_HOST="localhost"
+MYSQL_PORT="3306"
+MYSQL_DATABASE=""
+MYSQL_USER=""
+MYSQL_PASSWORD=""
+
+# Optional
+CORS_ORIGIN="https://tu-dominio.com"
+MAIL_FROM="no-reply@tu-dominio.com"
+
+# Frontend build only; leave empty when API is on the same domain
+VITE_PAYMENT_API_URL=""
+```
+
+Importante:
+
+- Las variables sensibles de la API no deben estar en el frontend.
+- En PHP, `process.env` o `.env` no se leen automáticamente en hosting compartido; normalmente se configuran en el panel del hosting.
+- `VITE_PAYMENT_API_URL` se usa al compilar el frontend para apuntar al backend público.
+
+## Scripts disponibles
+
+```bash
+npm run dev          # inicia el entorno de desarrollo
+npm run build        # construye producción
+npm run preview      # prueba el build localmente
+npm run test         # ejecuta pruebas con Vitest
+npm run lint         # analiza el código con ESLint
+npm run format       # formatea y corrige estilo
+npm run check        # valida formato con Prettier
+```
+
+## Despliegue
+
+### Frontend
+
+1. Ejecuta:
 
 ```bash
 npm run build
 ```
 
-## Testing
+2. Sube el contenido generado en `dist/` a tu hosting público o carpeta de producción.
+3. Asegúrate de que la URL del frontend coincida con `CORS_ORIGIN` configurado en la API.
 
-This project uses [Vitest](https://vitest.dev/) for testing. You can run the tests with:
+### API de pagos
 
-```bash
-npm run test
+1. Sube la carpeta `api/` a un dominio o subdominio público, por ejemplo:
+
+```text
+https://api.tu-dominio.com
 ```
 
-## Styling
+2. Importa `api/database.sql` en phpMyAdmin o MySQL para crear la estructura necesaria.
+3. Configura las variables de entorno en el panel de PHP del hosting:
+   - `MYSQL_HOST`
+   - `MYSQL_PORT`
+   - `MYSQL_DATABASE`
+   - `MYSQL_USER`
+   - `MYSQL_PASSWORD`
+   - `BOLD_IDENTITY_KEY`
+   - `BOLD_SECRET_KEY`
+   - `USD_TO_COP`
+   - `CORS_ORIGIN`
+   - `MAIL_FROM`
 
-This project uses [Tailwind CSS](https://tailwindcss.com/) for styling.
+4. Define `VITE_PAYMENT_API_URL` antes de compilar el frontend, por ejemplo:
 
-### Removing Tailwind CSS
-
-If you prefer not to use Tailwind CSS:
-
-1. Remove the demo pages in `src/routes/demo/`
-2. Replace the Tailwind import in `src/styles.css` with your own styles
-3. Remove `tailwindcss()` from the plugins array in `vite.config.ts`
-4. Uninstall the packages: `npm install @tailwindcss/vite tailwindcss -D`
-
-## Linting & Formatting
-
-
-This project uses [eslint](https://eslint.org/) and [prettier](https://prettier.io/) for linting and formatting. Eslint is configured using [tanstack/eslint-config](https://tanstack.com/config/latest/docs/eslint). The following scripts are available:
-
-```bash
-npm run lint
-npm run format
-npm run check
+```text
+https://api.tu-dominio.com
 ```
 
+5. En Bold, configura el webhook para apuntar a:
 
-## Deploy to Cloudflare Workers
-
-This project uses the Cloudflare Vite plugin (configured in `vite.config.ts`) and `wrangler.jsonc`:
-
-1. Install Wrangler: `npm install -g wrangler`
-2. Authenticate: `wrangler login`
-3. Deploy: `npx wrangler deploy`
-
-For production env vars, run `wrangler secret put MY_VAR` for each secret listed in `.env.example`. Public (non-secret) vars go in `wrangler.jsonc` under `vars`.
-
-KV, D1, R2, and Durable Object bindings are configured in `wrangler.jsonc` — see https://developers.cloudflare.com/workers/wrangler/configuration/.
-
-
-
-## Routing
-
-This project uses [TanStack Router](https://tanstack.com/router) with file-based routing. Routes are managed as files in `src/routes`.
-
-### Adding A Route
-
-To add a new route to your application just add a new file in the `./src/routes` directory.
-
-TanStack will automatically generate the content of the route file for you.
-
-Now that you have two routes you can use a `Link` component to navigate between them.
-
-### Adding Links
-
-To use SPA (Single Page Application) navigation you will need to import the `Link` component from `@tanstack/react-router`.
-
-```tsx
-import { Link } from "@tanstack/react-router";
+```text
+https://api.tu-dominio.com/webhooks/bold.php
 ```
 
-Then anywhere in your JSX you can use it like so:
+Usa HTTPS en producción y verifica que el dominio de `CORS_ORIGIN` coincida exactamente con el frontend.
 
-```tsx
-<Link to="/about">About</Link>
-```
+## Notas de desarrollo
 
-This will create a link that will navigate to the `/about` route.
+- El sitio está orientado a una marca premium y a una experiencia de evento con tono institucional y cálido.
+- La lógica visual y de contenido está centralizada en componentes dentro de `src/components/`.
+- Si se agregan nuevas secciones o se cambia la estructura del sitio, conviene mantener la navegación y el contenido del hero coherentes con la identidad del congreso.
 
-More information on the `Link` component can be found in the [Link documentation](https://tanstack.com/router/v1/docs/framework/react/api/router/linkComponent).
+## Licencia
 
-### Using A Layout
-
-In the File Based Routing setup the layout is located in `src/routes/__root.tsx`. Anything you add to the root route will appear in all the routes. The route content will appear in the JSX where you render `{children}` in the `shellComponent`.
-
-Here is an example layout that includes a header:
-
-```tsx
-import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
-
-export const Route = createRootRoute({
-  head: () => ({
-    meta: [
-      { charSet: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { title: 'My App' },
-    ],
-  }),
-  shellComponent: ({ children }) => (
-    <html lang="en">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        <header>
-          <nav>
-            <Link to="/">Home</Link>
-            <Link to="/about">About</Link>
-          </nav>
-        </header>
-        {children}
-        <Scripts />
-      </body>
-    </html>
-  ),
-})
-```
-
-More information on layouts can be found in the [Layouts documentation](https://tanstack.com/router/latest/docs/framework/react/guide/routing-concepts#layouts).
-
-## Server Functions
-
-TanStack Start provides server functions that allow you to write server-side code that seamlessly integrates with your client components.
-
-```tsx
-import { createServerFn } from '@tanstack/react-start'
-
-const getServerTime = createServerFn({
-  method: 'GET',
-}).handler(async () => {
-  return new Date().toISOString()
-})
-
-// Use in a component
-function MyComponent() {
-  const [time, setTime] = useState('')
-  
-  useEffect(() => {
-    getServerTime().then(setTime)
-  }, [])
-  
-  return <div>Server time: {time}</div>
-}
-```
-
-## API Routes
-
-You can create API routes by using the `server` property in your route definitions:
-
-```tsx
-import { createFileRoute } from '@tanstack/react-router'
-import { json } from '@tanstack/react-start'
-
-export const Route = createFileRoute('/api/hello')({
-  server: {
-    handlers: {
-      GET: () => json({ message: 'Hello, World!' }),
-    },
-  },
-})
-```
-
-## Data Fetching
-
-There are multiple ways to fetch data in your application. You can use TanStack Query to fetch data from a server. But you can also use the `loader` functionality built into TanStack Router to load the data for a route before it's rendered.
-
-For example:
-
-```tsx
-import { createFileRoute } from '@tanstack/react-router'
-
-export const Route = createFileRoute('/people')({
-  loader: async () => {
-    const response = await fetch('https://swapi.dev/api/people')
-    return response.json()
-  },
-  component: PeopleComponent,
-})
-
-function PeopleComponent() {
-  const data = Route.useLoaderData()
-  return (
-    <ul>
-      {data.results.map((person) => (
-        <li key={person.name}>{person.name}</li>
-      ))}
-    </ul>
-  )
-}
-```
-
-Loaders simplify your data fetching logic dramatically. Check out more information in the [Loader documentation](https://tanstack.com/router/latest/docs/framework/react/guide/data-loading#loader-parameters).
-
-# Demo files
-
-Files prefixed with `demo` can be safely deleted. They are there to provide a starting point for you to play around with the features you've installed.
-
-# Learn More
-
-You can learn more about all of the offerings from TanStack in the [TanStack documentation](https://tanstack.com).
-
-For TanStack Start specific documentation, visit [TanStack Start](https://tanstack.com/start).
+Este proyecto es de uso interno para la operación del congreso y no tiene una licencia pública definida en este repositorio.
