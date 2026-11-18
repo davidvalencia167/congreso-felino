@@ -35,7 +35,7 @@ function SponsorLogo({ sponsor }: { sponsor: Sponsor }) {
         src={sponsor.logo}
         alt={`Logo de ${sponsor.name}`}
         loading="lazy"
-        className="max-h-14 max-w-37.5 object-contain"
+        className="max-h-20 max-w-52 object-contain"
       />
     );
   }
@@ -65,7 +65,7 @@ export function Sponsors() {
                         SPONSORS.map((sponsor) => {
                             const card = (
                                 <>
-                                <div className="flex h-16 items-center justify-center">
+                                <div className="flex h-20 items-center justify-center">
                                     <SponsorLogo sponsor={sponsor}/>
                                 </div>
                                 <span className="mt-3 flex items-center justify-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#a49c92]">
