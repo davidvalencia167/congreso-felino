@@ -8,6 +8,7 @@ import Agriquimvet from "../../assets/Agriquimvet.jpg";
 import HDC from "../../assets/HDC.jpg";
 import JaimeCastrillo from "../../assets/JC.jpg";
 import Glovetz from "../../assets/Glovetz.jpeg";
+import Innovett from "../../assets/innovett.jpeg";
 
 type Sponsor = {
     name: string;
@@ -23,7 +24,8 @@ const SPONSORS: Sponsor[] = [
     { name: "Agriquimvet", url: "https://www.agriquimvet.com", logo: Agriquimvet },
     { name: "HDC", logo: HDC },
     { name: "JC", logo: JaimeCastrillo },
-    { name: "Glovetz", logo: Glovetz }, 
+    { name: "Glovetz", logo: Glovetz },
+    { name: "Innovett animal care", url: "https://innovett.com/", logo: Innovett }, 
 ]
 
 function SponsorLogo({ sponsor }: { sponsor: Sponsor }) {
