@@ -6,6 +6,7 @@ import { Navbar } from '#/components/Navbar/Navbar'
 import { NearbyPlaces } from '#/components/NearbyPlaces/NearbyPlaces'
 import { Presale } from '#/components/Presale/Presale'
 import { Princing } from '#/components/Pricing/Pricing'
+import { Prizes } from '#/components/Prizes/Prizes'
 import { Program } from '#/components/Program/Program'
 import { Speakers } from '#/components/Speakers/Speakers'
 import { Sponsors } from '#/components/Sponsors/Sponsors'
@@ -46,6 +47,7 @@ function Index() {
           <Princing/>
           <Venue/>
           <NearbyPlaces/>
+          <Prizes/>
           <Sponsors/>
           <FAQ/>
         </main>

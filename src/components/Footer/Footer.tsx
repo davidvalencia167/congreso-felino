@@ -1,5 +1,6 @@
 
 import logo from "../../assets/logo-ivec.jpeg";
+import { Link } from "@tanstack/react-router";
 
 export function Footer() {
     return(
@@ -46,7 +47,10 @@ export function Footer() {
                 </div>
             </div>
             <div className="mx-auto max-w-7xl px-5 md:px-8 mt-10 pt-6 border-t border-border flex flex-wrap justify-center gap-3 text-xs text-muted-foreground">
-                <span>© 2026 IVEC · Congreso Felino. Todos los derechos reservados.</span>
+                <span>© 2026 IVEC · Congreso Veterinario Felino. Todos los derechos reservados.</span>
+                <Link to="/tratamiento-de-datos" className="hover:text-terracotta transition-colors">
+                    Tratamiento de datos
+                </Link>
             </div>
         </footer>
     );

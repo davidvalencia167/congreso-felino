@@ -28,7 +28,7 @@ Este proyecto está pensado para promocionar el congreso, mostrar ponentes, agen
 
 ### Backend de pagos
 
-- PHP 8.1+
+- PHP 8.4+ (latest available security release)
 - MySQL
 - PDO para MySQL
 - Endpoint de pagos y webhooks bajo `api/`
@@ -58,7 +58,7 @@ Este proyecto está pensado para promocionar el congreso, mostrar ponentes, agen
 
 - Node.js 18 o superior
 - npm
-- PHP 8.1+ con extensiones `pdo_mysql` y `json` habilitadas
+- PHP 8.4+ con extensiones `pdo_mysql` y `json` habilitadas
 - MySQL
 - Un dominio o subdominio público para la API PHP
 
@@ -148,14 +148,16 @@ npm run build
 
 ### API de pagos
 
-1. Sube la carpeta `api/` a un dominio o subdominio público, por ejemplo:
+1. En el panel del hosting, selecciona PHP 8.4 o una versión posterior y aplica el último parche de seguridad disponible. No mantengas PHP 8.1, 8.2 o 8.3 en producción.
+2. Comprueba la versión activa desde el panel o ejecuta `php -v` en la consola del hosting. La API rechaza versiones inferiores a PHP 8.4.
+3. Sube la carpeta `api/` a un dominio o subdominio público, por ejemplo:
 
 ```text
 https://api.tu-dominio.com
 ```
 
-2. Importa `api/database.sql` en phpMyAdmin o MySQL para crear la estructura necesaria.
-3. Configura las variables de entorno en el panel de PHP del hosting:
+4. Importa `api/database.sql` en phpMyAdmin o MySQL para crear la estructura necesaria.
+5. Configura las variables de entorno en el panel de PHP del hosting:
    - `MYSQL_HOST`
    - `MYSQL_PORT`
    - `MYSQL_DATABASE`
@@ -167,13 +169,13 @@ https://api.tu-dominio.com
    - `CORS_ORIGIN`
    - `MAIL_FROM`
 
-4. Define `VITE_PAYMENT_API_URL` antes de compilar el frontend, por ejemplo:
+6. Define `VITE_PAYMENT_API_URL` antes de compilar el frontend, por ejemplo:
 
 ```text
 https://api.tu-dominio.com
 ```
 
-5. En Bold, configura el webhook para apuntar a:
+7. En Bold, configura el webhook para apuntar a:
 
 ```text
 https://api.tu-dominio.com/webhooks/bold.php

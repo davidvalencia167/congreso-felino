@@ -9,8 +9,14 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TratamientoDeDatosRouteImport } from './routes/tratamiento-de-datos'
 import { Route as IndexRouteImport } from './routes/index'
 
+const TratamientoDeDatosRoute = TratamientoDeDatosRouteImport.update({
+  id: '/tratamiento-de-datos',
+  path: '/tratamiento-de-datos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +25,39 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/tratamiento-de-datos': typeof TratamientoDeDatosRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/tratamiento-de-datos': typeof TratamientoDeDatosRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/tratamiento-de-datos': typeof TratamientoDeDatosRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/tratamiento-de-datos'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/tratamiento-de-datos'
+  id: '__root__' | '/' | '/tratamiento-de-datos'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  TratamientoDeDatosRoute: typeof TratamientoDeDatosRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/tratamiento-de-datos': {
+      id: '/tratamiento-de-datos'
+      path: '/tratamiento-de-datos'
+      fullPath: '/tratamiento-de-datos'
+      preLoaderRoute: typeof TratamientoDeDatosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +70,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  TratamientoDeDatosRoute: TratamientoDeDatosRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

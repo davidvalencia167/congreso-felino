@@ -12,6 +12,9 @@ import alejandraImg from "../../assets/mejia.png";
 import alejandraVideo from "../../assets/alejandra-vallejo.mp4";
 import bruzzoneImg from "../../assets/bruzzone.png";
 import bruzzoneVideo from "../../assets/ernesto-bruzzone.mp4";
+import uclaLogo from "../../assets/ucla-logo.png";
+import dcvUclaLogo from "../../assets/dcv-ucla-logo.png";
+
 import { useEffect, useState } from "react";
 
 function useCountdown(target: Date) {
@@ -45,6 +48,19 @@ const slides: Slide[] = [
   { type: "video", src: alejandraVideo, poster:  alejandraVideo},
 ];
 
+const institutions = [
+  {
+    short: "UCLA",
+    name: "Universidad Centroccidental Lisandro Alvarado",
+    logo: uclaLogo,
+  },
+  {
+    short: "DCV UCLA",
+    name: "Decanato de Ciencias Veterinarias",
+    logo: dcvUclaLogo,
+  },
+];
+
 
 export function Hero() {
 
@@ -71,8 +87,24 @@ export function Hero() {
                     <span className="text-gold-gradient block text-6xl md:text-8xl lg:text-9xl">
                         Felino
                     </span>
-
                 </h1>
+
+                <div className="mt-8 flex flex-col items-center gap-3">
+                    <span className="text-[10px] font-semibold uppercase tracking-[0.25em]" style={{ color: "rgba(255,255,255,0.5)" }}>
+                        Con el respaldo de
+                    </span>
+                    <div className="flex flex-wrap items-center justify-center gap-3">
+                        {
+                            institutions.map((inst) => (
+                                <div key={inst.short} className="flex items-center gap-2.5 rounded-2xl bg-cream px-4 py-2.5 shadow-soft">
+                                    <img src={inst.logo} alt={`Logo de ${inst.name}`} className="h-10 w-auto object-contain"/>
+                                    <span className="font-sans text-[11px] font-semibold uppercase tracking-[0.12em] text-cocoa">
+                                        {inst.short}
+                                    </span>
+                                </div>
+                            ))}
+                    </div>
+                </div>
 
                 <p className="mt-8 max-w-2xl mx-auto text-lg" style={{color: "rgba(255, 255, 255, 0.78)"}}>
                     Dos dias dedicados por completo a la medicina felina.

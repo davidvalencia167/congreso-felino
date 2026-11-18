@@ -3,6 +3,7 @@ import michaelImg from "../../assets/michael-villa.png";
 import lugoImg from "../../assets/lugo.png";
 import alejandraImg from "../../assets/mejia.png";
 import bruzzoneImg from "../../assets/bruzzone.png";
+import juanCarlosImg from "../../assets/Juan Carlos Montoya.png";
 
 export type Speaker = {
     n: string;
@@ -42,16 +43,6 @@ export const speakersData: Speaker[] = [
         topics: ["Inmunología", "Laboratorio Clínico", "Dermatología animal"],
     },
 
-    
-    {
-        n: "Dr Ernesto Rodolfo Bruzzone",
-        r: "Medico Veterinario",
-        i: bruzzoneImg,
-        country: "Argentina",
-        bio: "Médico Veterinario egresado de la Universidad Nacional de La Plata (UNLP) en 1984, con más de cuatro décadas de trayectoria profesional. Su formación y experiencia se han desarrollado principalmente en gastroenterología veterinaria, endoscopía, ecografía, diagnóstico radiológico y cirugía laparoscópica.",
-        topics: ["Gastroenterología en caninos y felinos", "Endoscopía digestiva: indicaciones, diagnóstico y técnicas."]
-    },
-
     {
         n: "Dra Alejandra Mejía",
         r: "Medica Veterinaria",
@@ -60,6 +51,24 @@ export const speakersData: Speaker[] = [
         country: "Colombia",
         bio: "Médica Veterinaria con Maestría en Gestión de Ciencia, Tecnología e Innovación y especialización en Gerencia de Marketing. Con más de 16 años de experiencia en el desarrollo estratégico del sector veterinario, ha acompañado la transformación de clínicas, hospitales y empresas del ecosistema, articulando academia, industria y sector público para construir modelos de negocio sostenibles y de alto impacto.",
         topics: ["Gestion y Desarrollo de Negocios Veterinarios"],
+    },
+
+    {
+        n: "Dr. Juan Carlos Montoya Gómez",
+        r: "Medico Veterinario",
+        i: juanCarlosImg,
+        country: "Venezuela",
+        bio: "médico veterinario egresado de la Universidad Centro Occidental “Lisandro Alvarado” (UCLA), en Cabudare, estado Lara, Venezuela, donde cursó estudios en el Decanato de Ciencias Veterinarias entre 2000 y 2007 y obtuvo su título en noviembre de 2007. En 2014 completó en la misma universidad la especialización en Medicina Veterinaria Preventiva, y posteriormente realizó un diplomado en Imagenología Veterinaria.",
+        topics: ["diagnóstico por imagen mediante ultrasonido", "ecografía clínica de pequeñas especies"],
+    },
+
+    {
+        n: "Dr Ernesto Rodolfo Bruzzone",
+        r: "Medico Veterinario",
+        i: bruzzoneImg,
+        country: "Argentina",
+        bio: "Médico Veterinario egresado de la Universidad Nacional de La Plata (UNLP) en 1984, con más de cuatro décadas de trayectoria profesional. Su formación y experiencia se han desarrollado principalmente en gastroenterología veterinaria, endoscopía, ecografía, diagnóstico radiológico y cirugía laparoscópica.",
+        topics: ["Gastroenterología en caninos y felinos", "Endoscopía digestiva: indicaciones, diagnóstico y técnicas."]
     },
 
 ]
